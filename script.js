@@ -1,24 +1,24 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const card = document.getElementById("card");
+  const cards = document.querySelectorAll(".card");
   const surpriseBtn = document.getElementById("surpriseBtn");
 
-  // Initial welcome confetti burst
-  triggerWelcomeConfetti();
+  // Welcome Confetti
+  triggerConfetti();
 
-  // Flip card on user interaction
-  card.addEventListener("click", (e) => {
-    if (e.target.id === "surpriseBtn") return;
-    card.classList.toggle("flipped");
+  // Flip Card On Click for all teacher cards
+  cards.forEach((card) => {
+    card.addEventListener("click", () => {
+      card.classList.toggle("flipped");
+    });
   });
 
-  // Confetti celebration blast on button click
-  surpriseBtn.addEventListener("click", (e) => {
-    e.stopPropagation();
+  // Top Celebration Button
+  surpriseBtn.addEventListener("click", () => {
     fireCelebrationBlast();
   });
 });
 
-function triggerWelcomeConfetti() {
+function triggerConfetti() {
   confetti({
     particleCount: 70,
     spread: 60,
@@ -42,4 +42,3 @@ function fireCelebrationBlast() {
   fire(0.1, { spread: 120, startVelocity: 25, decay: 0.92, scalar: 1.2 });
   fire(0.1, { spread: 120, startVelocity: 45 });
 }
-
