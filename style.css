@@ -365,14 +365,90 @@ footer strong {
 }
 
 @media (max-width: 768px) {
-  .memory-card {
-    padding: 20px 14px;
+ /* =======================================
+   AUTOMATIC MEMORY PHOTO ANIMATION 
+   ======================================= */
+
+/* Memory card container float */
+.class-memory-section .photo-frame {
+  position: relative;
+  border-radius: 20px;
+  overflow: hidden;
+  border: 3px solid #fb7185;
+  /* Glowing border + floating up and down automatically */
+  animation: photoFloat 5s ease-in-out infinite alternate, neonGlow 3s ease-in-out infinite alternate;
+}
+
+/* Image zoom in and zoom out automatically */
+.class-memory-section .photo-frame img {
+  width: 100%;
+  height: auto;
+  max-height: 620px;
+  object-fit: cover;
+  display: block;
+  animation: imageZoomInOut 8s ease-in-out infinite alternate;
+}
+
+/* Shimmer / Glossy light sweep passing automatically */
+.class-memory-section .photo-frame::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -150%;
+  width: 60%;
+  height: 100%;
+  background: linear-gradient(
+    120deg,
+    transparent 20%,
+    rgba(255, 255, 255, 0.3) 50%,
+    transparent 80%
+  );
+  transform: skewX(-25deg);
+  animation: lightSweep 4s infinite ease-in-out;
+  pointer-events: none;
+}
+
+/* --- KEYFRAME ANIMATIONS --- */
+
+/* 1. Slow Zoom */
+@keyframes imageZoomInOut {
+  0% {
+    transform: scale(1);
   }
-  .memory-header h2 {
-    font-size: 1.3rem;
-  }
-  .photo-overlay {
-    font-size: 0.78rem;
-    padding-bottom: 8px;
+  100% {
+    transform: scale(1.08);
   }
 }
+
+/* 2. Floating Frame */
+@keyframes photoFloat {
+  0% {
+    transform: translateY(0px);
+  }
+  100% {
+    transform: translateY(-8px);
+  }
+}
+
+/* 3. Neon Border Pulse */
+@keyframes neonGlow {
+  0% {
+    box-shadow: 0 0 15px rgba(244, 63, 94, 0.3), 0 10px 25px rgba(0, 0, 0, 0.6);
+    border-color: rgba(251, 113, 133, 0.5);
+  }
+  100% {
+    box-shadow: 0 0 35px rgba(244, 63, 94, 0.8), 0 15px 40px rgba(0, 0, 0, 0.8);
+    border-color: #f43f5e;
+  }
+}
+
+/* 4. Light Passing */
+@keyframes lightSweep {
+  0%, 40% {
+    left: -150%;
+  }
+  100% {
+    left: 200%;
+  }
+}
+
