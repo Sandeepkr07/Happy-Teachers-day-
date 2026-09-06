@@ -325,18 +325,9 @@ header h1 {
   z-index: 3;
 }
 
+/* Darkness Overlay Completely Removed */
 .photo-overlay {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background: linear-gradient(to top, rgba(15, 2, 10, 0.95), rgba(15, 2, 10, 0.5) 70%, transparent);
-  padding: 24px 15px 12px;
-  color: #fda4af;
-  font-weight: 600;
-  font-size: 0.92rem;
-  letter-spacing: 0.5px;
-  z-index: 2;
+  display: none !important;
 }
 
 /* ==========================================================
@@ -495,9 +486,5 @@ footer strong {
   }
   .memory-header h2 {
     font-size: 1.3rem;
-  }
-  .photo-overlay {
-    font-size: 0.76rem;
-    padding-bottom: 8px;
   }
 }
